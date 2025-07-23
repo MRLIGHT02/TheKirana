@@ -2,6 +2,6 @@
 {
     public interface IAppDbInitializer
     {
-        void Initialize();
+        void Seed();
     }
 }
