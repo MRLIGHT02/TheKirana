@@ -23,7 +23,9 @@ app.UseStaticFiles(
     {
         FileProvider = new Microsoft.Extensions.FileProviders.PhysicalFileProvider(
         System.IO.Path.Combine(builder.Environment.ContentRootPath, "wwwroot", "Product")
-    )
+
+    ),
+        RequestPath = "/Product"
     }
     );
 
