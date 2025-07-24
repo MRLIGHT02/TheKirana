@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36301.6 d17.14
+VisualStudioVersion = 17.14.36301.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheKirana", "TheKirana\TheKirana.csproj", "{94DC0276-5311-42DB-988B-20A8F7C9668F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{F2F95F07-537C-4623-BA33-E707EBCEA491}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceContract", "ServiceContract\ServiceContract.csproj", "{E8855940-B77E-4E92-8BCA-539B335C24C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{94DC0276-5311-42DB-988B-20A8F7C9668F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94DC0276-5311-42DB-988B-20A8F7C9668F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94DC0276-5311-42DB-988B-20A8F7C9668F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2F95F07-537C-4623-BA33-E707EBCEA491}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2F95F07-537C-4623-BA33-E707EBCEA491}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2F95F07-537C-4623-BA33-E707EBCEA491}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2F95F07-537C-4623-BA33-E707EBCEA491}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8855940-B77E-4E92-8BCA-539B335C24C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8855940-B77E-4E92-8BCA-539B335C24C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8855940-B77E-4E92-8BCA-539B335C24C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8855940-B77E-4E92-8BCA-539B335C24C4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

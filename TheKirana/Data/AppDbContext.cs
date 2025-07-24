@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 using TheKirana.Models;
 
 namespace TheKirana.Data
@@ -20,9 +21,23 @@ namespace TheKirana.Data
         public DbSet<Address> Addresses { get; set; }
 
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+
+
+
+
+        // optionBuilder.UseSqlServer("Server=DESKTOP-R54CT7O;Database=TheKirana;Trusted_Connection=True;TrustServerCertificate=True;");
+
+
+    }
+
+    public class AppDbContextFactory : IDesignTimeDbContextFactory<AppDbContext>
+    {
+        public AppDbContext CreateDbContext(string[] args)
         {
-            base.OnModelCreating(modelBuilder);
+            var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
+            optionsBuilder.UseSqlServer("Server=DESKTOP-R54CT7O;Database=TheKirana;Trusted_Connection=True;TrustServerCertificate=True;");
+            return new AppDbContext(optionsBuilder.Options);
         }
     }
+
 }
