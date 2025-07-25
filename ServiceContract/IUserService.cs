@@ -12,5 +12,7 @@ namespace ServiceContract
         Task<ApplicationUser?> GetUserByIdAsync(string userId);
         Task UpdateUserProfileAsync(ApplicationUser user);
 
+        Task<ApplicationUser?> ChangeUserPassWord(ApplicationUser user);
+
     }
 }

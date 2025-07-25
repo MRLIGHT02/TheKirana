@@ -12,8 +12,8 @@ using TheKirana.Data;
 namespace TheKirana.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250724115421_TheMan")]
-    partial class TheMan
+    [Migration("20250725085636_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,8 +39,8 @@ namespace TheKirana.Data.Migrations
                     b.Property<string>("AddressLine2")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid?>("ApplicationUserUserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
@@ -69,15 +69,16 @@ namespace TheKirana.Data.Migrations
 
                     b.HasKey("AddressId");
 
-                    b.HasIndex("ApplicationUserId");
+                    b.HasIndex("ApplicationUserUserId");
 
                     b.ToTable("Addresses");
                 });
 
             modelBuilder.Entity("TheKirana.Models.ApplicationUser", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("UserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
@@ -89,6 +90,7 @@ namespace TheKirana.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("EmailConfirmed")
@@ -98,6 +100,9 @@ namespace TheKirana.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Gender")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Id")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
@@ -116,6 +121,7 @@ namespace TheKirana.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PasswordHash")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
@@ -124,6 +130,9 @@ namespace TheKirana.Data.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("ProfilePictureUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -131,9 +140,10 @@ namespace TheKirana.Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("UserId");
 
                     b.ToTable("Users");
                 });
@@ -155,8 +165,8 @@ namespace TheKirana.Data.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("CartItemId");
 
@@ -212,13 +222,16 @@ namespace TheKirana.Data.Migrations
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId1")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("OrderId");
 
                     b.HasIndex("ShippingAddressId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId1");
 
                     b.ToTable("Order");
                 });
@@ -351,7 +364,7 @@ namespace TheKirana.Data.Migrations
                 {
                     b.HasOne("TheKirana.Models.ApplicationUser", null)
                         .WithMany("Addresses")
-                        .HasForeignKey("ApplicationUserId");
+                        .HasForeignKey("ApplicationUserUserId");
                 });
 
             modelBuilder.Entity("TheKirana.Models.CartItem", b =>
@@ -379,7 +392,7 @@ namespace TheKirana.Data.Migrations
 
                     b.HasOne("TheKirana.Models.ApplicationUser", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("UserId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

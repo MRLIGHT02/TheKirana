@@ -1,4 +1,6 @@
-﻿using ServiceContract;
+﻿using Microsoft.CodeAnalysis.Options;
+using Microsoft.EntityFrameworkCore;
+using ServiceContract;
 using TheKirana.Data;
 using TheKirana.Models;
 
@@ -8,7 +10,7 @@ namespace Services
     public class ProductService : IProductService
     {
         private readonly AppDbContext _context;
-        ProductService(AppDbContext context)
+        public ProductService(AppDbContext context)
         {
             _context = context;
         }
@@ -21,22 +23,30 @@ namespace Services
 
         public Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            _context.Products.Remove(new Product { ProductId = id });
+            return _context.SaveChangesAsync();
         }
 
-        public Task<IEnumerable<Product>> GetAllAsync()
+        public async Task<IEnumerable<Product>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            if (_context == null || _context.Products == null)
+            {
+                return Enumerable.Empty<Product>();
+            }
+
+            var products = await _context.Products.ToListAsync();
+            return products;
         }
 
         public Task<Product?> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return _context.Products.FirstOrDefaultAsync(p => p.ProductId == id);
         }
 
-        public Task UpdateAsync(Product product)
+        public async Task UpdateAsync(Product product)
         {
-            throw new NotImplementedException();
+            _context.Products.Update(product);
+            await _context.SaveChangesAsync();
         }
     }
 }

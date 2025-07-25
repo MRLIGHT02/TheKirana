@@ -30,17 +30,19 @@ namespace TheKirana.Data.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Gender = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProfilePictureUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Id = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NormalizedEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     EmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
-                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SecurityStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -52,7 +54,7 @@ namespace TheKirana.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.Id);
+                    table.PrimaryKey("PK_Users", x => x.UserId);
                 });
 
             migrationBuilder.CreateTable(
@@ -104,16 +106,16 @@ namespace TheKirana.Data.Migrations
                     Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PinCode = table.Column<int>(type: "int", nullable: true),
                     IsDefault = table.Column<bool>(type: "bit", nullable: false),
-                    ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    ApplicationUserUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Addresses", x => x.AddressId);
                     table.ForeignKey(
-                        name: "FK_Addresses_Users_ApplicationUserId",
-                        column: x => x.ApplicationUserId,
+                        name: "FK_Addresses_Users_ApplicationUserUserId",
+                        column: x => x.ApplicationUserUserId,
                         principalTable: "Users",
-                        principalColumn: "Id");
+                        principalColumn: "UserId");
                 });
 
             migrationBuilder.CreateTable(
@@ -123,7 +125,7 @@ namespace TheKirana.Data.Migrations
                     CartItemId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProductId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     AddedOn = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -140,7 +142,7 @@ namespace TheKirana.Data.Migrations
                         name: "FK_CartItem_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "Id");
+                        principalColumn: "UserId");
                 });
 
             migrationBuilder.CreateTable(
@@ -149,7 +151,8 @@ namespace TheKirana.Data.Migrations
                 {
                     OrderId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserId1 = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ShippingAddressId = table.Column<int>(type: "int", nullable: true),
                     OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TotalAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
@@ -164,10 +167,10 @@ namespace TheKirana.Data.Migrations
                         principalTable: "Addresses",
                         principalColumn: "AddressId");
                     table.ForeignKey(
-                        name: "FK_Order_Users_UserId",
-                        column: x => x.UserId,
+                        name: "FK_Order_Users_UserId1",
+                        column: x => x.UserId1,
                         principalTable: "Users",
-                        principalColumn: "Id",
+                        principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -224,9 +227,9 @@ namespace TheKirana.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Addresses_ApplicationUserId",
+                name: "IX_Addresses_ApplicationUserUserId",
                 table: "Addresses",
-                column: "ApplicationUserId");
+                column: "ApplicationUserUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CartItem_ProductId",
@@ -244,9 +247,9 @@ namespace TheKirana.Data.Migrations
                 column: "ShippingAddressId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Order_UserId",
+                name: "IX_Order_UserId1",
                 table: "Order",
-                column: "UserId");
+                column: "UserId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderItem_OrderId",
