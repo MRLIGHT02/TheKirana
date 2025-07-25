@@ -1,13 +1,22 @@
 ﻿using ServiceContract;
+using TheKirana.Data;
 using TheKirana.Models;
 
 namespace Services
 {
+
     public class ProductService : IProductService
     {
-        public Task AddAsync(Product product)
+        private readonly AppDbContext _context;
+        ProductService(AppDbContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
+        }
+        public async Task<Product> AddAsync(Product product)
+        {
+            _context.Products.Add(product);
+            await _context.SaveChangesAsync();
+            return product;
         }
 
         public Task DeleteAsync(int id)

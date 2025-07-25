@@ -12,8 +12,8 @@ using TheKirana.Data;
 namespace TheKirana.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250724112533_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250724115421_TheMan")]
+    partial class TheMan
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
