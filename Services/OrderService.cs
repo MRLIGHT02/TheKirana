@@ -8,7 +8,7 @@ using TheKirana.Models;
 
 namespace Services
 {
-    internal class OrderService : IOrderService
+    public class OrderService : IOrderService
     {
         public Task<Order?> GetOrderByIdAsync(int orderId)
         {

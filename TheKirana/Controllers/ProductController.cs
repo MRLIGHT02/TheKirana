@@ -11,6 +11,7 @@ namespace TheKirana.Controllers
 
         public IActionResult Details(int id)
         {
+
             // Logic to get product details by id
             // For now, just returning a view
             return View(id);

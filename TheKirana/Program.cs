@@ -1,12 +1,25 @@
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using ServiceContract;
+using Services;
 using TheKirana.Data;
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<AppDbContext>(
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
     );
+// Registering Services
+
+builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<IProductService, ProductService>();
+builder.Services.AddTransient<IOrderService, OrderService>();
+builder.Services.AddTransient<IAddressService, AddressService>();
+builder.Services.AddTransient<ICategoryService, CategoryService>();
+builder.Services.AddTransient<ICartService, CartService>();
+
 
 
 // Adding Controllers
