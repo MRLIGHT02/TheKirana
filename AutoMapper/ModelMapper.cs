@@ -1,6 +1,6 @@
 ﻿namespace AutoMapper.Mapper
 {
-    public class ModelMapper
+    public class ModelMapper : Profile
     {
         public ModelMapper()
         {
