@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace TheKirana.Models
+namespace TheKirana.Model.Models
 {
     public class OrderItem
     {

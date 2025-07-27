@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using ServiceContract;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TheKirana.Models;
+using TheKirana.Model.Models;
 
 namespace Services
 {
@@ -16,6 +18,11 @@ namespace Services
         public UserService(UserManager<ApplicationUser> users)
         {
             _users = users;
+        }
+
+        public Task<ApplicationUser?> ChangeUserPassWord(ApplicationUser user)
+        {
+            throw new NotImplementedException();
         }
 
         //public async Task<ApplicationUser?> ChangeUserPassWord(ApplicationUser user, string newPassword)
@@ -37,10 +44,7 @@ namespace Services
 
         //}
 
-        public Task<ApplicationUser?> ChangeUserPassWord(ApplicationUser user)
-        {
-            throw new NotImplementedException();
-        }
+
 
         public Task<ApplicationUser?> GetUserByIdAsync(string userId)
         {

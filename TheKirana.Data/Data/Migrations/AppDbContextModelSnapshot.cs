@@ -8,7 +8,7 @@ using TheKirana.Data;
 
 #nullable disable
 
-namespace TheKirana.Data.Migrations
+namespace TheKirana.Data.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     partial class AppDbContextModelSnapshot : ModelSnapshot

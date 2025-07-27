@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
-using TheKirana.Models;
+using TheKirana.Model.Models;
 
 namespace TheKirana.Data.Data
 {

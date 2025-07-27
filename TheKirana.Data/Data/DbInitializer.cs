@@ -1,6 +1,6 @@
-﻿using TheKirana.Models;
+﻿using TheKirana.Model.Models;
 
-namespace TheKirana.Data
+namespace TheKirana.Data.Data
 {
     public class DbInitializer : IAppDbInitializer
     {

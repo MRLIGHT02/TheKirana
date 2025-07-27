@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace TheKirana.Models
+namespace TheKirana.Model.Models
 {
     public class ApplicationUser : IdentityUser
     {

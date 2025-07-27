@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using ServiceContract;
 using Services;
-using TheKirana.Data;
+using TheKirana.Data.Data;
 
 
 

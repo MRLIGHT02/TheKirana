@@ -1,8 +1,8 @@
-﻿using Microsoft.CodeAnalysis.Options;
+﻿
 using Microsoft.EntityFrameworkCore;
 using ServiceContract;
-using TheKirana.Data;
-using TheKirana.Models;
+using TheKirana.Data.Data;
+using TheKirana.Model.Models;
 
 namespace Services
 {

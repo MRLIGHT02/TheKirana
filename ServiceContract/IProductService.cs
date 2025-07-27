@@ -1,4 +1,4 @@
-﻿using TheKirana.Models;
+﻿using TheKirana.Model.Models;
 namespace ServiceContract
 {
     public interface IProductService

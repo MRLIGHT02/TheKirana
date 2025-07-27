@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace TheKirana.Models
+namespace TheKirana.Model.Models
 {
 
     public class Address

@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using TheKirana.Data;
+using TheKirana.Data.Data;
 
 #nullable disable
 
-namespace TheKirana.Data.Migrations
+namespace TheKirana.Data.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     [Migration("20250725085636_InitialCreate")]

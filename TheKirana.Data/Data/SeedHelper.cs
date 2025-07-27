@@ -1,4 +1,4 @@
-﻿namespace TheKirana.Data
+﻿namespace TheKirana.Data.Data
 {
     public class SeedHelper
     {
