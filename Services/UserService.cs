@@ -18,23 +18,28 @@ namespace Services
             _users = users;
         }
 
-        public async Task<ApplicationUser?> ChangeUserPassWord(ApplicationUser user, string newPassword)
+        //public async Task<ApplicationUser?> ChangeUserPassWord(ApplicationUser user, string newPassword)
+        //{
+        //    var existingUser = _users.FindByIdAsync(user.UserId.ToString());
+
+        //    if (existingUser == null)
+        //    {
+        //        return null;
+        //    }
+
+        //    var removeResult = await _users.RemovePasswordAsync(existingUser.Result!);
+        //    if (!removeResult.Succeeded)
+        //    {
+        //        return null;
+        //    }
+        //    var result = await _users.AddPasswordAsync(existingUser.Result.PasswordHash, newPassword);
+
+
+        //}
+
+        public Task<ApplicationUser?> ChangeUserPassWord(ApplicationUser user)
         {
-            var existingUser = _users.FindByIdAsync(user.UserId.ToString());
-
-            if (existingUser == null)
-            {
-                return null;
-            }
-
-            var removeResult = await _users.RemovePasswordAsync(existingUser.Result!);
-            if (!removeResult.Succeeded)
-            {
-                return null;
-            }
-            var result = await _users.AddPasswordAsync(existingUser.Result.PasswordHash, newPassword);
-
-
+            throw new NotImplementedException();
         }
 
         public Task<ApplicationUser?> GetUserByIdAsync(string userId)

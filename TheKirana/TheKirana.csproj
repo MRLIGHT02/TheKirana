@@ -31,6 +31,8 @@
 	<ItemGroup>
 		<ProjectReference Include="..\ServiceContract\ServiceContract.csproj" />
 		<ProjectReference Include="..\Services\Services.csproj" />
+		<ProjectReference Include="..\TheKirana.Data\TheKirana.Data.csproj" />
+		<ProjectReference Include="..\TheKirana.Model\TheKirana.Model.csproj" />
 	</ItemGroup>
 
 </Project>

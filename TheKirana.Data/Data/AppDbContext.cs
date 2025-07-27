@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Design;
 using TheKirana.Models;
 
-namespace TheKirana.Data
+namespace TheKirana.Data.Data
 {
     public class AppDbContext : DbContext
     {

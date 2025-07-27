@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNetCore.Identity;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 

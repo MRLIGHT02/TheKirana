@@ -1,4 +1,4 @@
-using Microsoft.Data.SqlClient;
+
 using Microsoft.EntityFrameworkCore;
 using ServiceContract;
 using Services;
@@ -11,6 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDbContext>(
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
     );
+
+
 // Registering Services
 
 builder.Services.AddTransient<IUserService, UserService>();

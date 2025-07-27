@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Servic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceContract", "ServiceContract\ServiceContract.csproj", "{E8855940-B77E-4E92-8BCA-539B335C24C4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheKirana.Model", "TheKirana.Model\TheKirana.Model.csproj", "{7AB0CA26-F134-4345-B511-B7BEAA8109A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheKirana.Data", "TheKirana.Data\TheKirana.Data.csproj", "{16BBEE35-D5EE-4987-BC37-7841ADE27D40}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{E8855940-B77E-4E92-8BCA-539B335C24C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8855940-B77E-4E92-8BCA-539B335C24C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8855940-B77E-4E92-8BCA-539B335C24C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AB0CA26-F134-4345-B511-B7BEAA8109A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AB0CA26-F134-4345-B511-B7BEAA8109A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AB0CA26-F134-4345-B511-B7BEAA8109A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AB0CA26-F134-4345-B511-B7BEAA8109A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16BBEE35-D5EE-4987-BC37-7841ADE27D40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16BBEE35-D5EE-4987-BC37-7841ADE27D40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16BBEE35-D5EE-4987-BC37-7841ADE27D40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16BBEE35-D5EE-4987-BC37-7841ADE27D40}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
