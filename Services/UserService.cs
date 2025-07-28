@@ -23,15 +23,19 @@ namespace Services
             _users = users;
         }
 
-        public Task<ApplicationUser?> ChangeUserPassWord(ApplicationUser user)
+        public async Task<ApplicationUser?> ChangeUserPassWord(Guid userid, string currentPassword, string newPassword)
         {
-            var existingUser = _users.FindByIdAsync(user.UserId.ToString());
-            if (existingUser != null)
-            {
-                existingUser.Result.PasswordHash = user.PasswordHash;
+            var user = await _users.FindByIdAsync(userid.ToString());
 
+            if (user == null)
+            {
+                return null;
             }
-            return null;
+
+
+            var result = await _users.ChangePasswordAsync(user, currentPassword, newPassword);
+            return result;
+
         }
 
 
