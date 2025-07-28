@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Service.DTO;
 using ServiceContract;
 
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,55 +25,30 @@ namespace Services
 
         public Task<ApplicationUser?> ChangeUserPassWord(ApplicationUser user)
         {
-            throw new NotImplementedException();
-        }
-
-        //public async Task<ApplicationUser?> ChangeUserPassWord(ApplicationUser user, string newPassword)
-        //{
-        //    var existingUser = _users.FindByIdAsync(user.UserId.ToString());
-
-        //    if (existingUser == null)
-        //    {
-        //        return null;
-        //    }
-
-        //    var removeResult = await _users.RemovePasswordAsync(existingUser.Result!);
-        //    if (!removeResult.Succeeded)
-        //    {
-        //        return null;
-        //    }
-        //    var result = await _users.AddPasswordAsync(existingUser.Result.PasswordHash, newPassword);
-
-
-        //}
-
-
-
-        public Task<ApplicationUser?> GetUserByIdAsync(string userId)
-        {
-            return _users.FindByIdAsync(userId);
-        }
-
-        public Task UpdateUserProfileAsync(ApplicationUser user)
-        {
             var existingUser = _users.FindByIdAsync(user.UserId.ToString());
-            if (existingUser == null)
+            if (existingUser != null)
             {
-                return Task.FromResult<ApplicationUser?>(null);
+                existingUser.Result.PasswordHash = user.PasswordHash;
+
             }
-            existingUser.Result!.FirstName = user.FirstName;
-            existingUser.Result.LastName = user.LastName;
-            existingUser.Result.Email = user.Email;
-            existingUser.Result.UserName = user.UserName;
-            existingUser.Result.Addresses = user.Addresses;
-            existingUser.Result.ProfilePictureUrl = user.ProfilePictureUrl;
-            existingUser.Result.Gender = user.Gender;
-            existingUser.Result.DateOfBirth = user.DateOfBirth;
-            // Ensure password is hashed before saving
+            return null;
+        }
 
 
-            // Update other properties as needed
-            return _users.UpdateAsync(existingUser.Result);
+
+
+
+        public async Task<ApplicationUser?> GetUserByIdAsync(Guid userId)
+        {
+            return await _users.Users.FirstOrDefaultAsync(u => u.UserId == userId);
+        }
+
+
+
+
+        public Task UpdateUserProfileAsync(Guid id, UserDto user)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -5,7 +5,6 @@ using Services;
 using TheKirana.Data.Data;
 
 
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<AppDbContext>(
@@ -15,12 +14,12 @@ builder.Services.AddDbContext<AppDbContext>(
 
 // Registering Services
 
-builder.Services.AddTransient<IUserService, UserService>();
-builder.Services.AddTransient<IProductService, ProductService>();
-builder.Services.AddTransient<IOrderService, OrderService>();
-builder.Services.AddTransient<IAddressService, AddressService>();
-builder.Services.AddTransient<ICategoryService, CategoryService>();
-builder.Services.AddTransient<ICartService, CartService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IAddressService, AddressService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<ICartService, CartService>();
 
 
 

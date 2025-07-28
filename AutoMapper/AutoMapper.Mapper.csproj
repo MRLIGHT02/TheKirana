@@ -10,4 +10,9 @@
 		<PackageReference Include="AutoMapper" Version="15.0.1" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<ProjectReference Include="..\Service.DTO\Service.DTO.csproj" />
+		<ProjectReference Include="..\TheKirana.Model\TheKirana.Model.csproj" />
+	</ItemGroup>
+
 </Project>

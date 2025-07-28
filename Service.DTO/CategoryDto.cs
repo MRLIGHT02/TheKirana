@@ -7,6 +7,10 @@ using TheKirana.Model.Models;
 
 namespace Service.DTO
 {
+    /// <summary>
+    /// Represents a data transfer object for a category, including its name, description, image URL, and associated
+    /// products.
+    /// </summary>
     public class CategoryDto
     {
         public string? CategoryOfName { get; set; }

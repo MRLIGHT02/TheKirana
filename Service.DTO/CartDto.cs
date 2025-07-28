@@ -7,6 +7,10 @@ using TheKirana.Model.Models;
 
 namespace Service.DTO
 {
+    /// <summary>
+    /// Represents a data transfer object for a shopping cart item, containing information about the product, user,
+    /// quantity, and the date it was added.
+    /// </summary>
     public class CartDto
     {
         public Product? Product { get; set; }

@@ -7,7 +7,14 @@ using TheKirana.Model.Models;
 
 namespace Service.DTO
 {
-    internal class OrderDto
+    /// <summary>
+    /// Represents a data transfer object for an order, including details such as shipping address, order date, total
+    /// amount, status, and items.
+    /// </summary>
+    /// <remarks>This class is used to encapsulate order information for transfer between different layers of
+    /// an application. The <see cref="Status"/> property can have values such as "Pending", "Processing", "Shipped",
+    /// "Delivered", or "Cancelled".</remarks>
+    public class OrderDto
     {
         public Address? ShippingAddress { get; set; }
 

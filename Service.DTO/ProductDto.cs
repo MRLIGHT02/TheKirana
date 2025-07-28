@@ -7,7 +7,14 @@ using TheKirana.Model.Models;
 
 namespace Service.DTO
 {
-    internal class ProductDto
+    /// <summary>
+    /// Represents a data transfer object for a product, containing details such as category, pricing, and stock
+    /// information.
+    /// </summary>
+    /// <remarks>This class is used to encapsulate product information for transfer between different layers
+    /// of an application. It includes properties for categorization, pricing, and other relevant product
+    /// details.</remarks>
+    public class ProductDto
     {
         public string? GenderType { get; set; }
         public string? CategoryName { get; set; }
