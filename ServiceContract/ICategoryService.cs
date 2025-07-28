@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Service.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,8 +12,8 @@ namespace ServiceContract
     {
         Task<IEnumerable<Category>> GetAllAsync();
         Task<Category?> GetByIdAsync(int id);
-        Task AddAsync(Category category);
-        Task UpdateAsync(Category category);
-        Task DeleteAsync(int id);
+        Task<Category> AddAsync(Category category);
+        Task UpdateAsync(CategoryDto category, int id);
+        Task<Category?> DeleteAsync(int id);
     }
 }

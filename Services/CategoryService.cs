@@ -1,38 +1,73 @@
-﻿using ServiceContract;
+﻿using Microsoft.EntityFrameworkCore;
+using Service.DTO;
+using ServiceContract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TheKirana.Data.Data;
 using TheKirana.Model.Models;
 
 namespace Services
 {
     public class CategoryService : ICategoryService
     {
-        public Task AddAsync(Category category)
+        private readonly AppDbContext _context;
+
+        public CategoryService(AppDbContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
 
-        public Task DeleteAsync(int id)
+        public async Task<Category> AddAsync(Category category)
         {
-            throw new NotImplementedException();
+            await _context.Categories.AddAsync(category);
+            await _context.SaveChangesAsync();
+            return category;
         }
 
-        public Task<IEnumerable<Category>> GetAllAsync()
+        public async Task<Category?> DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var category = await _context.Categories.FindAsync(id);
+            if (category != null)
+            {
+                _context.Categories.Remove(category);
+                await _context.SaveChangesAsync();
+            }
+            return category;
         }
 
-        public Task<Category?> GetByIdAsync(int id)
+        public async Task<IEnumerable<Category>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Categories.ToListAsync();
         }
 
-        public Task UpdateAsync(Category category)
+        public async Task<Category?> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var category = await _context.Categories.FindAsync(id);
+            return category;
+
+        }
+
+        public async Task UpdateAsync(CategoryDto category, int id)
+        {
+            var existingCategory = await _context.Categories.FindAsync(id);
+
+            if (existingCategory != null)
+            {
+                existingCategory.CategoryOfName = category.CategoryOfName;
+                existingCategory.CategoryDescription = category.CategoryDescription;
+                existingCategory.ImageUrl = category.ImageUrl;
+                existingCategory.Products = category.Products;
+                _context.Categories.Update(existingCategory);
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                throw new KeyNotFoundException($"Category with ID {id} not found.");
+            }
+
         }
     }
 }

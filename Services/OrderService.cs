@@ -1,28 +1,50 @@
 ﻿using ServiceContract;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TheKirana.Data.Data;
 using TheKirana.Model.Models;
 
 namespace Services
 {
     public class OrderService : IOrderService
     {
-        public Task<Order?> GetOrderByIdAsync(int orderId)
+        private readonly AppDbContext _context;
+
+        public OrderService(AppDbContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
 
-        public Task<IEnumerable<Order>> GetOrdersByUserAsync(string userId)
+        public async Task<Order?> GetOrderByIdAsync(int orderId)
         {
-            throw new NotImplementedException();
+            return await _context.Order.FindAsync(orderId);
+
         }
 
-        public Task<Order> PlaceOrderAsync(string userId)
+        public async Task<IEnumerable<Order>> GetOrdersByUserAsync(string userId)
         {
-            throw new NotImplementedException();
+            return await _context.Order.Where(od => od.UserId == userId).ToListAsync();
+
+
+        }
+
+        public async Task<Order> PlaceOrderAsync(string userId)
+        {
+            var order = new Order
+            {
+                UserId = userId,
+                OrderDate = DateTime.UtcNow,
+                Status = "Pending",
+                // Add other default values if needed
+            };
+            _context.Order.Add(order);
+            await _context.SaveChangesAsync();
+
+            return order;
         }
     }
 }

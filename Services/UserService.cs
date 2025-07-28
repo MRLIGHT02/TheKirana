@@ -32,10 +32,14 @@ namespace Services
                 return null;
             }
 
-
             var result = await _users.ChangePasswordAsync(user, currentPassword, newPassword);
-            return result;
 
+            if (result.Succeeded)
+            {
+                return user;
+            }
+
+            return null;
         }
 
 
