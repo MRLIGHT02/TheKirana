@@ -8,6 +8,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Service.DTO\Service.DTO.csproj" />
+		<ProjectReference Include="..\TheKirana.Data\TheKirana.Data.csproj" />
 		<ProjectReference Include="..\TheKirana.Model\TheKirana.Model.csproj" />
 	</ItemGroup>
 

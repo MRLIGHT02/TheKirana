@@ -8,7 +8,8 @@
 
 	<ItemGroup>
 		<PackageReference Include="AutoMapper" Version="15.0.1" />
-		<PackageReference Include="bootstrap" Version="5.3.7" />
+		
+		<PackageReference Include="Cake.LibMan" Version="1.0.1" />
 		<PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="9.0.7" />
 		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.7" />
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="9.0.7" />
@@ -26,6 +27,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Folder Include="wwwroot\" />
 		<Folder Include="Views\Shared\" />
 	</ItemGroup>
 

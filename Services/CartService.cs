@@ -1,6 +1,7 @@
 ﻿using ServiceContract;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,43 +18,76 @@ namespace Services
             _context = context;
         }
 
-        public Task<AppDbContext?> AddToCartAsync(string userId, int productId, int quantity)
+        public async Task AddToCartAsync(string userId, int productId, int quantity)
         {
-            var existingItem = await _context.CartItem.FindAsync(productId);
+            // Check if product already in cart for the user
+            var existingItem = await _context.CartItem
+                .FirstOrDefaultAsync(c => c.ProductId == productId && c.User!.Id == userId);
 
             if (existingItem != null)
             {
                 existingItem.Quantity += quantity;
-                _context.CartItems.Update(existingItem);
+                _context.CartItem.Update(existingItem);
             }
             else
             {
+                // Find user by userId
+                var user = await _context.Users.FindAsync(userId);
+                if (user == null)
+                {
+                    throw new Exception("User not found");
+                }
+
                 var cartItem = new CartItem
                 {
-                    UserId = userId,
+                    User = user,
                     ProductId = productId,
                     Quantity = quantity
                 };
 
-                await _context.CartItems.AddAsync(cartItem);
+                await _context.CartItem.AddAsync(cartItem);
             }
 
             await _context.SaveChangesAsync();
         }
 
-        public Task ClearCartAsync(string userId)
+        public async Task ClearCartAsync(string userId)
         {
-            throw new NotImplementedException();
+            var items = await _context.CartItem
+      .Where(c => c.User!.Id == userId)
+      .ToListAsync();
+
+            if (items.Any())
+            {
+                _context.CartItem.RemoveRange(items);
+                await _context.SaveChangesAsync();
+            }
         }
 
-        public Task<IEnumerable<CartItem>> GetCartItemsAsync(string userId)
+        public async Task<IEnumerable<CartItem>> GetCartItemsAsync(string userId)
         {
-            throw new NotImplementedException();
+            var items = await _context.CartItem
+       .Where(c => c.User!.Id == userId)
+       .ToListAsync();
+
+            if (items.Any())
+            {
+                _context.CartItem.RemoveRange(items);
+                await _context.SaveChangesAsync();
+            }
+
+            return items;
         }
 
-        public Task RemoveFromCartAsync(string userId, int productId)
+        public async Task RemoveFromCartAsync(string userId, int productId)
         {
-            throw new NotImplementedException();
+            var item = await _context.CartItem.FirstOrDefaultAsync(c => c.User!.Id == userId && c.ProductId == productId);
+
+            if (item != null)
+            {
+                _context.CartItem.Remove(item);
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }
