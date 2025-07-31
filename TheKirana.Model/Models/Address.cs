@@ -43,7 +43,8 @@ namespace TheKirana.Model.Models
 
         public int? PinCode { get; set; }
 
-
+        public string UserId { get; set; } = null!;
+        public ApplicationUser User { get; set; } = null!;
         public bool IsDefault { get; set; } = false;
         #endregion
 
