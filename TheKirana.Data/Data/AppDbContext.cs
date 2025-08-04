@@ -35,7 +35,7 @@ namespace TheKirana.Data.Data
         public AppDbContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
-            optionsBuilder.UseSqlServer("Server=DESKTOP-R54CT7O;Database=TheKirana;Trusted_Connection=True;TrustServerCertificate=True;");
+            optionsBuilder.UseSqlServer("Server=localhost;Database=TheKirana;Trusted_Connection=True;TrustServerCertificate=True;");
             return new AppDbContext(optionsBuilder.Options);
         }
     }

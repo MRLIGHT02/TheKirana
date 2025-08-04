@@ -10,6 +10,6 @@ namespace ServiceContract
 {
     public interface ILogin
     {
-        public Task<ApplicationUser?> LoginUser(UserDto userDto, ApplicationUser user);
+        public Task<ApplicationUser?> LoginUser(UserDto userDto);
     }
 }

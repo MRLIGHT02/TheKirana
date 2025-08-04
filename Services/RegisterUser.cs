@@ -29,8 +29,14 @@ namespace Services
             };
 
             // Properly hashes password + saves to DB
-            var result = await _userManager.CreateAsync(user, userDto.Password);
-            return result; ;
+             var result= await _userManager.CreateAsync(user, userDto.Password);
+
+            if (result.Succeeded)
+            {
+                return user;
+            }
+            return null;
+
         }
     }
 }
