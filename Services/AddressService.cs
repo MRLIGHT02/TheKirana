@@ -27,10 +27,7 @@ namespace Services
             if (user == null)
                 throw new Exception("User not found");
 
-            // Link address to user if you have a navigation property
-            //address.= user.Id; // 🛑 Ensure Address has UserId property
-
-            //await _context.Addresses.AddAsync(address);
+            
             await _context.SaveChangesAsync();
         }
 

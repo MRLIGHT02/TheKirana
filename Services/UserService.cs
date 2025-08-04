@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Service.DTO;
 using ServiceContract;
 
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+
 using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
