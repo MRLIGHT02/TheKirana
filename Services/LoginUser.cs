@@ -21,7 +21,7 @@ namespace Services
         }
        
 
-     public Task<ApplicationUser?> ILogin.LoginUser(UserDto userDto)
+     public Task<ApplicationUser?> LoginUser(UserDto userDto)
         {
             if (_user.UserName != userDto.UserName)
             {
